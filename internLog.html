@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="interlog.css">
+
+</head>
+
+<body>
+    <main id="main-holder">
+        <h1 id="signup-header"><b>Sign Up</b></h1>
+
+        <div id="signup-error-msg-holder">
+            <p id="signup-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        </div>
+
+        <form id="signup-form">
+            <input type="text" name="username" id="username-field" class="signup-form-field" placeholder="Username">
+            <input type="password" name="password" id="password-field" class="signup-form-field" placeholder="Password">
+            <input type="submit" value="submit" id="signup-form-submit">
+        </form>
+
+    </main>
+
+    <script>
+        const signupForm = document.getElementById("signup-form");
+        const signupButton = document.getElementById("signup-form-submit");
+        const signupErrorMsg = document.getElementById("signup-error-msg");
+
+        signupButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const username = signupForm.username.value;
+            const password = signupForm.password.value;
+
+            if (username === "admin" && password === "password") {
+                alert("You have successfully logged in.");
+                location.reload();
+            } else if (username != "admin" && password != "password") {
+                signupErrorMsg.innerHTML = 'Invalid username and password';
+                signupErrorMsg.style.opacity = 1;
+            } else if (username != "admin" && password === "password") {
+                signupErrorMsg.innerHTML = "Invalid username";
+                signupErrorMsg.style.opacity = 1;
+            } else if (username === "admin" && password != "password") {
+                signupErrorMsg.innerHTML = "Invalid password";
+                signupErrorMsg.style.opacity = 1;
+            }
+        })
+    </script>
+
+</body>
+
+</html>
